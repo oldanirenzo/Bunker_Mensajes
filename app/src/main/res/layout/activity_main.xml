@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="10dp"
+    >
+
+
+    <TextView
+        android:id="@+id/textAgregar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:paddingTop="30dp"
+        android:text="@string/string_n_mero_de_tel_fono"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/numeroAgregar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Agregar como ' 0261 6...' todo junto"
+        android:inputType="number"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/btnAgregar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:text="@string/agregar" />
+
+    <TextView
+        android:id="@+id/textEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:paddingTop="30dp"
+        android:text="@string/string_Numero_Eliminar"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/numeroEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Eliminar como ' 0261 6...' todo junto"
+        android:inputType="number"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:text="@string/eliminar" />
+
+
+</LinearLayout>

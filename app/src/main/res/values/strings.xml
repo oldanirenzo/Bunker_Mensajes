@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Bunker Mensajes</string>
+    <string name="numero_de_tel_fono">Numero de teléfono</string>
+    <string name="string_n_mero_de_tel_fono">Número de teléfono</string>
+    <string name="agregar">Agregar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="string_Nombre">Nombre</string>
+    <string name="string_Numero_Eliminar">Numero a Eliminar</string>
+</resources>
