@@ -8,18 +8,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
 import java.util.ArrayList;
 
 public class SMSListener extends BroadcastReceiver {
 
+
+
     private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
-    private static final String TAG = "SmsBroadcastReceiver";
-    String msg, phoneNo = "";
     ArrayList<String> numerosArray = new ArrayList<String>(); //Este array se va a llenar con todos los números que la persona agregue
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        context.startService(new Intent(context, MyService.class));
 
         AndroidSQLiteOpenHelper admin = new AndroidSQLiteOpenHelper(context,"mensajes",null,1); // Base de datos, donde guardo los números a los que deseo mandar el mensaje
         SQLiteDatabase db = admin.getWritableDatabase();
@@ -29,23 +30,24 @@ public class SMSListener extends BroadcastReceiver {
             numerosArray.add(fila.getString(0)); //Agrego cada número al array de números.
         }
 
-        Log.i(TAG, "Intent Received: " +intent.getAction());
+        String alarmaComunitaria = ""; //Este es el número del que deseo recibir y reenviar el mensaje.
+
         if(intent.getAction()==SMS_RECEIVED){ // Si la acción que se produjo fue recibir un sms
             Bundle dataBundle = intent.getExtras();
             if(dataBundle!=null){
                 Object[] mypdu = (Object[]) dataBundle.get("pdus");
                 final SmsMessage[] message = new SmsMessage[mypdu.length];
-                for (int i = 0; i<mypdu.length;i++){
+                for (int i = 0; i<mypdu.length;i++) {
 
                     String format = dataBundle.getString("format");
-                    message[i] = SmsMessage.createFromPdu((byte[])mypdu[i], format);
+                    message[i] = SmsMessage.createFromPdu((byte[]) mypdu[i], format);
 
-                    phoneNo = message[i].getOriginatingAddress(); //Guarda el número de teléfono
-                    msg=message[i].getMessageBody(); //Guarda el mensaje
+                    if (message[i].getOriginatingAddress().indexOf(alarmaComunitaria) != -1) { //Si el número de teléfono es el que estoy esperando
+                        enviarSMS(message[i].getMessageBody()); // Envio el mensaje
+                        break;
+                    }
                 }
-                if(phoneNo.equals("")){ //Si el numero es este, realizo el reenvio del cuerpo del mensaje
-                    enviarSMS(msg);
-                }
+
             }
         }
     }

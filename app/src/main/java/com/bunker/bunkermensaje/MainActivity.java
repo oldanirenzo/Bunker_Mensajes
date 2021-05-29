@@ -1,8 +1,5 @@
 package com.bunker.bunkermensaje;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -14,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_RECEIVE_SMS=0;
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Numero agregado", Toast.LENGTH_SHORT).show();
     }
+
+
 
     //Despues de tener el resultado de los permisos
     @Override

@@ -17,11 +17,14 @@ public class MyService extends Service {
             registerReceiver(smsListener, new IntentFilter(SMS_RECEIVED));
         }
     };
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
     }
 
     public MyService() {
@@ -30,8 +33,6 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
-
-
 }
